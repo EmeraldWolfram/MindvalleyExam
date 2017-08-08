@@ -6,6 +6,11 @@ package emerald.gfoong.mindvalleyexam.object;
 
 public class CategoryItem {
 
+    public static final String BOARD_CATEGORY_ID    = "id";
+    public static final String BOARD_CATEGORY_TITLE = "title";
+    public static final String BOARD_CATEGORY_COUNT = "photo_count";
+    public static final String BOARD_CATEGORY_LINKS = "links";
+
     private Integer itemId;
     private String itemTitle;
     private Integer itemPhotoCount;

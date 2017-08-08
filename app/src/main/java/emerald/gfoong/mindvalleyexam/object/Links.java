@@ -5,6 +5,13 @@ package emerald.gfoong.mindvalleyexam.object;
  */
 
 public class Links {
+
+    public static final String BOARD_LINKS_SELF     = "self";
+    public static final String BOARD_LINKS_HTML     = "html";
+    public static final String BOARD_LINKS_PHOTOS   = "photos";
+    public static final String BOARD_LINKS_LIKES    = "likes";
+    public static final String BOARD_LINKS_DOWNLOAD = "download";
+
     private String selfUrl;
     private String htmlUrl;
     private String photosUrl;

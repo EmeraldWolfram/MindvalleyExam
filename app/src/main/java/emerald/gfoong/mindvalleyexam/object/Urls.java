@@ -5,6 +5,13 @@ package emerald.gfoong.mindvalleyexam.object;
  */
 
 public class Urls {
+
+    public static final String BOARD_URLS_RAW       = "raw";
+    public static final String BOARD_URLS_FULL      = "full";
+    public static final String BOARD_URLS_REGULAR   = "regular";
+    public static final String BOARD_URLS_SMALL     = "small";
+    public static final String BOARD_URLS_THUMB     = "thumb";
+
     private String raw;
     private String full;
     private String regular;

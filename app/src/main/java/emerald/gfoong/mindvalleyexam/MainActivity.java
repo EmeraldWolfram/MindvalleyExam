@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
-import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

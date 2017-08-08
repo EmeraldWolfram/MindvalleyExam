@@ -5,7 +5,14 @@ package emerald.gfoong.mindvalleyexam.object;
  */
 
 public class User {
-    private Integer id;
+
+    public static final String BOARD_USER_ID        = "id";
+    public static final String BOARD_USER_NAME      = "name";
+    public static final String BOARD_USER_USERNAME  = "username";
+    public static final String BOARD_USER_PROFILE   = "profile_image";
+    public static final String BOARD_USER_LINKS     = "links";
+
+    private String id;
     private String name;
     private String username;
     private ProfileImage profileImage;
@@ -19,7 +26,7 @@ public class User {
         links       = null;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -39,7 +46,7 @@ public class User {
         return profileImage;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

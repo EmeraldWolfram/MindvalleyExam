@@ -7,22 +7,35 @@ import java.util.List;
  * Created by FOONG on 7/8/2017.
  */
 
-public class ResourceItem {
+public class PinBoardInfo {
+
+    public static final String BOARD_ID             = "id";
+    public static final String BOARD_DATE           = "created_at";
+    public static final String BOARD_WIDTH          = "width";
+    public static final String BOARD_HEIGHT         = "height";
+    public static final String BOARD_COLOR          = "color";
+    public static final String BOARD_LIKES          = "likes";
+    public static final String BOARD_LIKED_BY_USR   = "liked_by_user";
+    public static final String BOARD_USER           = "user";
+    public static final String BOARD_COLLECTION     = "current_user_collections";
+    public static final String BOARD_URLS           = "urls";
+    public static final String BOARD_CATEGORIES     = "categories";
+    public static final String BOARD_LINKS          = "links";
 
     private String id;
-    private Integer createdDate;
+    private String createdDate;
     private Integer width;
     private Integer height;
     private Integer color;
     private Integer likes;
     private Boolean likedByUser;
     private User user;
-    private List<String> curUserCollections;
+    private List<Object> curUserCollections;
     private Urls urls;
     private List<CategoryItem> categoryItemList;
     private Links links;
 
-    public ResourceItem(){
+    public PinBoardInfo(){
         curUserCollections  = new ArrayList<>();
         categoryItemList    = new ArrayList<>();
     }
@@ -35,7 +48,7 @@ public class ResourceItem {
         return color;
     }
 
-    public Integer getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
@@ -59,7 +72,7 @@ public class ResourceItem {
         return categoryItemList;
     }
 
-    public List<String> getCurUserCollections() {
+    public List<Object> getCurUserCollections() {
         return curUserCollections;
     }
 
@@ -83,11 +96,15 @@ public class ResourceItem {
         this.color = color;
     }
 
-    public void setCreatedDate(Integer createdDate) {
+    public void setColor(String color) {
+        this.color  = Integer.parseInt(color.substring(1), 16);
+    }
+
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
-    public void setCurUserCollections(List<String> curUserCollections) {
+    public void setCurUserCollections(List<Object> curUserCollections) {
         this.curUserCollections = curUserCollections;
     }
 

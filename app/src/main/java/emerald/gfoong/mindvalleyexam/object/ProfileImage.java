@@ -5,6 +5,11 @@ package emerald.gfoong.mindvalleyexam.object;
  */
 
 public class ProfileImage {
+
+    public static final String BOARD_PROFILE_SMALL  = "small";
+    public static final String BOARD_PROFILE_MEDIUM = "medium";
+    public static final String BOARD_PROFILE_LARGE  = "large";
+
     private String smallImgUrl;
     private String mediumImgUrl;
     private String largeImgUrl;
