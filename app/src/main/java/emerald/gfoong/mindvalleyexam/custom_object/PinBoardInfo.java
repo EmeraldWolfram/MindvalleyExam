@@ -1,4 +1,4 @@
-package emerald.gfoong.mindvalleyexam.object;
+package emerald.gfoong.mindvalleyexam.custom_object;
 
 import java.util.ArrayList;
 import java.util.List;

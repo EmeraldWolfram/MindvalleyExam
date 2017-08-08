@@ -7,12 +7,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import emerald.gfoong.mindvalleyexam.object.CategoryItem;
-import emerald.gfoong.mindvalleyexam.object.Links;
-import emerald.gfoong.mindvalleyexam.object.PinBoardInfo;
-import emerald.gfoong.mindvalleyexam.object.ProfileImage;
-import emerald.gfoong.mindvalleyexam.object.Urls;
-import emerald.gfoong.mindvalleyexam.object.User;
+import emerald.gfoong.mindvalleyexam.custom_object.CategoryItem;
+import emerald.gfoong.mindvalleyexam.custom_object.Links;
+import emerald.gfoong.mindvalleyexam.custom_object.PinBoardInfo;
+import emerald.gfoong.mindvalleyexam.custom_object.ProfileImage;
+import emerald.gfoong.mindvalleyexam.custom_object.Urls;
+import emerald.gfoong.mindvalleyexam.custom_object.User;
 
 /**
  * Created by FOONG on 8/8/2017.

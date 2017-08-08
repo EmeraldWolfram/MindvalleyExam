@@ -1,4 +1,4 @@
-package emerald.gfoong.mindvalleyexam.task;
+package emerald.gfoong.mindvalleyexam.tools;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

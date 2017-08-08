@@ -8,7 +8,7 @@ import org.robolectric.annotation.Config;
 
 import java.util.List;
 
-import emerald.gfoong.mindvalleyexam.object.PinBoardInfo;
+import emerald.gfoong.mindvalleyexam.custom_object.PinBoardInfo;
 
 import static org.junit.Assert.*;
 

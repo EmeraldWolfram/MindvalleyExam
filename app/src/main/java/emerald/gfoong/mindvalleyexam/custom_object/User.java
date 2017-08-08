@@ -1,4 +1,4 @@
-package emerald.gfoong.mindvalleyexam.object;
+package emerald.gfoong.mindvalleyexam.custom_object;
 
 /**
  * Created by FOONG on 7/8/2017.
