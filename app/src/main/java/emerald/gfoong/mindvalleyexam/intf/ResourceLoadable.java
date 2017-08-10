@@ -4,6 +4,11 @@ import java.io.BufferedInputStream;
 
 /**
  * Created by FOONG on 7/8/2017.
+ *
+ * Interface intended to be use by the ResourceLoadTask.
+ * User should define a class object that implement this interface
+ * and pass into the ResourceLoadTask to use
+ *
  */
 
 public interface ResourceLoadable {
@@ -13,7 +18,7 @@ public interface ResourceLoadable {
      *
      * This method is used to decode the InputStream into the resource type desired by the user
      */
-    Object decodeRes(BufferedInputStream inputStream);
+    Object decodeRes(BufferedInputStream inputStream) throws Exception;
 
     /**
      * onDownloadCompleted()

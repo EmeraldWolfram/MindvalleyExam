@@ -1,23 +1,29 @@
 package emerald.gfoong.mindvalleyexam;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import butterknife.BindBitmap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import emerald.gfoong.mindvalleyexam.custom_view.UserViewHolder;
 import emerald.gfoong.mindvalleyexam.intf.MvpMain;
 import emerald.gfoong.mindvalleyexam.model.MainModel;
 import emerald.gfoong.mindvalleyexam.presenter.MainPresenter;
-import emerald.gfoong.mindvalleyexam.tools.PopUpException;
-import emerald.gfoong.mindvalleyexam.tools.PopUpManager;
+import emerald.gfoong.mindvalleyexam.lib.PopUpException;
+import emerald.gfoong.mindvalleyexam.lib.PopUpManager;
 
 public class MainActivity extends AppCompatActivity implements MvpMain.MvpView{
 
@@ -25,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements MvpMain.MvpView{
     RecyclerView listView;
     @BindView(R.id.list_view_container)
     SwipeRefreshLayout listViewContainer;
+    @BindBitmap(R.drawable.ic_delete_white_24dp)
+    Bitmap trashIcon;
 
     private PopUpManager popUpManager;
     private UserListAdapter adapter;
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MvpMain.MvpView{
 
     private void initMvp(){
         popUpManager                = new PopUpManager(this);
-        MainPresenter   presenter   = new MainPresenter(this);
+        MainPresenter   presenter   = new MainPresenter(this, trashIcon);
         MainModel       model       = new MainModel(presenter);
         presenter.setTaskModel(model);
         taskPresenter               = presenter;
@@ -55,6 +63,36 @@ public class MainActivity extends AppCompatActivity implements MvpMain.MvpView{
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        adapter = new UserListAdapter();
+        ItemTouchHelper.SimpleCallback callback =
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+                    @Override
+                    public boolean onMove(RecyclerView              recyclerView,
+                                          RecyclerView.ViewHolder   viewHolder,
+                                          RecyclerView.ViewHolder   target) {
+                        return taskPresenter.onMove(recyclerView, viewHolder, target);
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        taskPresenter.onSwiped(listViewContainer, viewHolder, direction);
+                    }
+
+                    @Override
+                    public void onChildDraw(Canvas canvas, RecyclerView rccView,
+                                            RecyclerView.ViewHolder viewHolder, float dX, float dY,
+                                            int actionState, boolean isActive) {
+                        taskPresenter.onChildDraw(canvas, rccView, viewHolder, dX, dY, actionState, isActive);
+                        super.onChildDraw(canvas, rccView, viewHolder, dX, dY, actionState, isActive);
+                    }
+                };
+
+        listView.setHasFixedSize(true);
+        listView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setAdapter(adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(listView);
     }
 
 
@@ -65,10 +103,14 @@ public class MainActivity extends AppCompatActivity implements MvpMain.MvpView{
     }
 
     @Override
-    public void onRefresh() {
-        // Your code to refresh the list here.
+    protected void onPause() {
+        super.onPause();
+        taskPresenter.onPause();
+    }
 
-        listViewContainer.setRefreshing(false);
+    @Override
+    public void onRefresh() {
+        taskPresenter.onRefresh();
     }
 
     @Override
@@ -97,44 +139,38 @@ public class MainActivity extends AppCompatActivity implements MvpMain.MvpView{
     }
 
     @Override
-    public void removeRecord(int position, int newSize) {
+    public void removeUser(int position, int newSize) {
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, newSize);
     }
 
     @Override
-    public void insertRecord(int position) {
+    public void insertUser(int position) {
         adapter.notifyItemInserted(position);
     }
 
+    @Override
+    public void notifyUserListUpdated() {
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void stopRefreshingAnimation() {
+        listViewContainer.setRefreshing(false);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void startNewActivity(Intent intent) {
+        this.startActivity(intent);
+    }
+
+    @Override
+    public void finishActivity() {
+        this.finish();
+    }
 }
-
-/*
-ResourceLoadTask task = new ResourceLoadTask(new ResourceLoadable() {
-
-            @Override
-            public Object decodeRes(BufferedInputStream inputStream) {
-                return BitmapFactory.decodeStream(inputStream);
-            }
-
-            @Override
-            public void onDownloadCompleted(Object object) {
-                Bitmap img  = (Bitmap)object;
-                if(img != null) {
-                   myImage.setImageBitmap(img);
-                } else {
-                    Toast.makeText(MainActivity.this, "Bitmap is null", Toast.LENGTH_LONG).show();
-                }
-
-            }
-
-            @Override
-            public void onDownloadFailed(Exception exception) {
-                Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        String url = "https://images.unsplash.com/profile-1464495186405-68089dcd96c3?ixlib=rb-0.3.5\\u0026q=80\\u0026fm=jpg\\u0026crop=faces\\u0026fit=crop\\u0026h=32\\u0026w=32\\u0026s=63f1d805cffccb834cf839c719d91702";
-        task.execute(url);
-
- */

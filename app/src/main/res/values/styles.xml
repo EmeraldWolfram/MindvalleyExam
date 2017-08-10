@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ProgressDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:alertDialogStyle">@style/AlertDialogStyle</item>
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+    </style>
+
+    <style name="AlertDialogStyle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:bottomBright">@color/colorWhite</item>
+        <item name="android:bottomDark">@color/colorWhite</item>
+        <item name="android:bottomMedium">@color/colorWhite</item>
+        <item name="android:centerBright">@color/colorWhite</item>
+        <item name="android:centerDark">@color/colorWhite</item>
+        <item name="android:centerMedium">@color/colorWhite</item>
+        <item name="android:fullBright">@color/colorWhite</item>
+        <item name="android:fullDark">@color/colorWhite</item>
+        <item name="android:topBright">@color/colorWhite</item>
+        <item name="android:topDark">@color/colorWhite</item>
+    </style>
+
 </resources>

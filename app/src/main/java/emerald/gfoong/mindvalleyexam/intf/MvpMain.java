@@ -1,5 +1,6 @@
 package emerald.gfoong.mindvalleyexam.intf;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -17,13 +18,18 @@ import emerald.gfoong.mindvalleyexam.custom_object.User;
 public interface MvpMain {
 
     interface MvpView extends ActivityView, SwipeRefreshLayout.OnRefreshListener{
-        void removeRecord(int position, int newSize);
-        void insertRecord(int position);
+        void removeUser(int position, int newSize);
+        void insertUser(int position);
+        void notifyUserListUpdated();
+        void stopRefreshingAnimation();
+        Context getContext();
     }
 
-    interface MvpPresenterV {
+    interface MvpPresenterV extends View.OnClickListener{
         void onResume();
         void onPause();
+
+        void onRefresh();
 
         void onBindViewHolder(UserViewHolder holder, int position);
         int getItemCount();
@@ -36,13 +42,13 @@ public interface MvpMain {
 
     }
 
-    interface MvpPresenterM {}
+    interface MvpPresenterM {
+        void handleException(Exception exc);
+        void updateUserList(ArrayList<User> userList);
+    }
 
-    interface MvpModel {
-        void addItem(User user);
-        void removeItem(User cr);
-        ArrayList<User> retrieveRecords();
-
+    interface MvpModel extends ResourceLoadable {
+        void prepareUserList();
     }
 
 }

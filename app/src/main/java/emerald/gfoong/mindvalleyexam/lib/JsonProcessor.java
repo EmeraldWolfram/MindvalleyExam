@@ -1,4 +1,4 @@
-package emerald.gfoong.mindvalleyexam.tools;
+package emerald.gfoong.mindvalleyexam.lib;
 
 import org.json.JSONArray;
 import org.json.JSONException;

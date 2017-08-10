@@ -1,6 +1,8 @@
 package emerald.gfoong.mindvalleyexam.intf;
 
-import emerald.gfoong.mindvalleyexam.tools.PopUpException;
+import android.content.Intent;
+
+import emerald.gfoong.mindvalleyexam.lib.PopUpException;
 
 /**
 * Copyright (C) 2016 - 2017 Steven Foong Ghin Yew <stevenfgy@yahoo.com>
@@ -20,4 +22,6 @@ import emerald.gfoong.mindvalleyexam.tools.PopUpException;
 */
 public interface ActivityView {
 	void displayMessage(PopUpException exc);
+	void startNewActivity(Intent intent);
+	void finishActivity();
 }

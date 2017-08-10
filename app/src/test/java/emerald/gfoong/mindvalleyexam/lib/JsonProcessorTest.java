@@ -1,4 +1,4 @@
-package emerald.gfoong.mindvalleyexam.tools;
+package emerald.gfoong.mindvalleyexam.lib;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +38,5 @@ public class JsonProcessorTest {
         assertEquals(1, pinBoardInfos.size());
 
     }
-
-
 
 }

@@ -1,11 +1,9 @@
-package emerald.gfoong.mindvalleyexam.tools;
+package emerald.gfoong.mindvalleyexam.lib;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
-
-import emerald.gfoong.mindvalleyexam.custom_view.CustomToast;
 
 /**
  * Copyright (C) 2016 - 2017 Steven Foong Ghin Yew <stevenfgy@yahoo.com>
